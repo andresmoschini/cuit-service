@@ -30,3 +30,7 @@ indent_style = tab
 [{.vscode/**,**/Properties/launchSettings.json}]
 indent_size = unset
 insert_final_newline = unset
+
+[*.[sS]ecret.*]
+indent_style = tab
+insert_final_newline = false
