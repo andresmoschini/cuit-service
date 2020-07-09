@@ -12,6 +12,11 @@ namespace CuitService
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostContext, configurationBuilder) =>
+                {
+                    configurationBuilder.AddJsonFile("appsettings.Secret.shared.json", true);
+                    configurationBuilder.AddJsonFile("appsettings.Secret.{hostContext.HostingEnvironment.EnvironmentName}.json", true);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
