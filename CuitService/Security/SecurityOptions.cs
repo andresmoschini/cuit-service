@@ -6,6 +6,6 @@ namespace CuitService.Security
     public class SecurityOptions
     {
         public bool SkipLifetimeValidation { get; set; }
-        public IEnumerable<SecurityKey> SigningKeys { get; set; }
+        public IEnumerable<SecurityKey> SigningKeys { get; set; } = new SecurityKey[0];
     }
 }
