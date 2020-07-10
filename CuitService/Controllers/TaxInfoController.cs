@@ -20,7 +20,7 @@ namespace CuitService.Controllers
         [HttpGet("/taxinfo/by-cuit/{cuit}")]
         public async Task<TaxInfo> GetTaxInfoByCuit(string cuit)
         {
-            return new TaxInfo()
+            return await Task.FromResult(new TaxInfo()
             {
                 ActividadPrincipal = "620100-SERVICIOS DE CONSULTORES EN INFORMÁTICA Y SUMINISTROS DE PROGRAMAS DE INFORMÁTICA",
                 Apellido = null,
@@ -46,7 +46,7 @@ namespace CuitService.Controllers
                 PersonaFisica = false,
                 RazonSocial = "RZS C.S. SA",
                 StatCode = 0
-            };
+            });
         }
     }
 }
