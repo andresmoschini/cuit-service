@@ -44,4 +44,8 @@ EXPOSE 443
 COPY --from=publish /app/publish .
 ARG version=unknown
 RUN echo $version > /app/wwwroot/version.txt
+# TODO: do something to decrypt configurations
+# It requires mapping gpg data from host, as we do in sops-with-docker.sh
+# then, in the entry point decrypt the files (do not store decrypted in the image)
+# Or do a custom configuration reader?
 ENTRYPOINT ["dotnet", "CuitService.dll"]
