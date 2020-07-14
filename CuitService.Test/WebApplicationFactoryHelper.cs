@@ -1,4 +1,4 @@
-using CuitService.Security;
+using CuitService.DopplerSecurity;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +16,7 @@ namespace CuitService.Test
                 builder => builder.ConfigureTestServices(
                     services => services.Configure(configureOptions)));
 
-        public static WebApplicationFactory<Startup> ConfigureSecurityOptions(this WebApplicationFactory<Startup> factory, Action<SecurityOptions> configureOptions)
+        public static WebApplicationFactory<Startup> ConfigureSecurityOptions(this WebApplicationFactory<Startup> factory, Action<DopplerSecurityOptions> configureOptions)
             => factory.ConfigureService(configureOptions);
 
         public static WebApplicationFactory<Startup> WithDisabledLifeTimeValidation(this WebApplicationFactory<Startup> factory)

@@ -1,19 +1,16 @@
-using CuitService.Security;
+using CuitService.DopplerSecurity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Linq;
-using System.Security.Cryptography;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class SecurityServiceCollectionExtensions
+    public static class DopplerSecurityServiceCollectionExtensions
     {
-        public static IServiceCollection AddSecurity(this IServiceCollection services)
+        public static IServiceCollection AddDopplerSecurity(this IServiceCollection services)
         {
-            services.ConfigureOptions<ConfigureSecurityOption>();
+            services.ConfigureOptions<ConfigureDopplerSecurityOption>();
 
             services
                 .AddOptions<AuthorizationOptions>()
@@ -27,7 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services
                 .AddOptions<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme)
-                .Configure<IOptions<SecurityOptions>>((o, securityOptions) =>
+                .Configure<IOptions<DopplerSecurityOptions>>((o, securityOptions) =>
                 {
                     o.SaveToken = true;
                     o.TokenValidationParameters = new TokenValidationParameters()

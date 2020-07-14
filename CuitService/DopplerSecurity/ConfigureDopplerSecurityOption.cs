@@ -6,14 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 
-namespace CuitService.Security
+namespace CuitService.DopplerSecurity
 {
-    public class ConfigureSecurityOption : IConfigureOptions<SecurityOptions>
+    public class ConfigureDopplerSecurityOption : IConfigureOptions<DopplerSecurityOptions>
     {
         private readonly IConfiguration _configuration;
         private readonly IFileProvider _fileProvider;
 
-        public ConfigureSecurityOption(IConfiguration configuration, IFileProvider fileProvider)
+        public ConfigureDopplerSecurityOption(IConfiguration configuration, IFileProvider fileProvider)
         {
             _configuration = configuration;
             _fileProvider = fileProvider;
@@ -34,7 +34,7 @@ namespace CuitService.Security
             return new RsaSecurityKey(RSA.Create(rsaParameters));
         }
 
-        public void Configure(SecurityOptions options)
+        public void Configure(DopplerSecurityOptions options)
         {
             var path = _configuration.GetValue("public-keys", "public-keys");
             var files = _fileProvider.GetDirectoryContents(path).Where(x => !x.IsDirectory);

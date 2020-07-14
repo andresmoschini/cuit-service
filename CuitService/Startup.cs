@@ -21,7 +21,7 @@ namespace CuitService
         {
             services.AddSingleton(WebHostEnvironment.ContentRootFileProvider);
             services.AddControllers();
-            services.AddSecurity();
+            services.AddDopplerSecurity();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
