@@ -36,7 +36,7 @@ namespace CuitService.DopplerSecurity
 
         public void Configure(DopplerSecurityOptions options)
         {
-            var path = _configuration.GetValue("public-keys", "public-keys");
+            var path = _configuration.GetValue("PublicKeysFolder", "public-keys");
             var files = _fileProvider.GetDirectoryContents(path).Where(x => !x.IsDirectory);
             var publicKeys = files
                 .Select(ReadToEnd)
