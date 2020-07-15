@@ -10,7 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddDopplerSecurity(this IServiceCollection services)
         {
-            services.ConfigureOptions<ConfigureDopplerSecurityOption>();
+            services.ConfigureOptions<ConfigureDopplerSecurityOptions>();
 
             services
                 .AddOptions<AuthorizationOptions>()

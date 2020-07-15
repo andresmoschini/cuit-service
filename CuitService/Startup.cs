@@ -8,20 +8,17 @@ namespace CuitService
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            WebHostEnvironment = env;
         }
 
         public IConfiguration Configuration { get; }
-        public IWebHostEnvironment WebHostEnvironment { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(WebHostEnvironment.ContentRootFileProvider);
-            services.AddControllers();
             services.AddDopplerSecurity();
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

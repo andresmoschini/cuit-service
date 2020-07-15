@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
@@ -8,15 +9,15 @@ using System.Security.Cryptography;
 
 namespace CuitService.DopplerSecurity
 {
-    public class ConfigureDopplerSecurityOption : IConfigureOptions<DopplerSecurityOptions>
+    public class ConfigureDopplerSecurityOptions : IConfigureOptions<DopplerSecurityOptions>
     {
         private readonly IConfiguration _configuration;
         private readonly IFileProvider _fileProvider;
 
-        public ConfigureDopplerSecurityOption(IConfiguration configuration, IFileProvider fileProvider)
+        public ConfigureDopplerSecurityOptions(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             _configuration = configuration;
-            _fileProvider = fileProvider;
+            _fileProvider = webHostEnvironment.ContentRootFileProvider;
         }
 
         private static string ReadToEnd(IFileInfo fileInfo)
