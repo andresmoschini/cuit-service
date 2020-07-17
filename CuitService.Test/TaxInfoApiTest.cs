@@ -86,6 +86,7 @@ namespace CuitService.Test
             using var appFactory = _factory.WithDisabledLifeTimeValidation()
                 .AddConfiguration(new Dictionary<string, string>()
                 {
+                    ["TaxInfoProvider:UseDummyData"] = "false",
                     ["TaxInfoProvider:Host"] = host,
                     ["TaxInfoProvider:UserName"] = expectedUserName,
                     ["TaxInfoProvider:Password"] = expectedPassword
