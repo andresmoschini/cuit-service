@@ -16,16 +16,15 @@ namespace CuitService.Controllers
             _logger = logger;
         }
 
-        // TODO: validate CUIT before, in filter, binder, etc. And avoid
-        // primitive obsession in cuit parameter.
+        // TODO: rename cuitNumber parameter as cuit
         [HttpGet("/taxinfo/by-cuit/{cuit}")]
-        public async Task<TaxInfo> GetTaxInfoByCuit([FromRoute] string cuit)
+        public async Task<TaxInfo> GetTaxInfoByCuit([FromRoute] CuitNumber cuitNumber)
         {
             return await Task.FromResult(new TaxInfo()
             {
                 ActividadPrincipal = "620100-SERVICIOS DE CONSULTORES EN INFORMÁTICA Y SUMINISTROS DE PROGRAMAS DE INFORMÁTICA",
                 Apellido = null,
-                CUIT = cuit,
+                CUIT = cuitNumber.cuit,
                 CatIVA = "RI",
                 CatImpGanancias = "RI",
                 DomicilioCodigoPostal = "7600",
