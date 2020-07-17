@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace CuitService.Controllers
 {
     [Authorize]
+    [ApiController]
     public class TaxInfoController
     {
         private readonly ILogger<TaxInfoController> _logger;
@@ -18,7 +19,7 @@ namespace CuitService.Controllers
         // TODO: validate CUIT before, in filter, binder, etc. And avoid
         // primitive obsession in cuit parameter.
         [HttpGet("/taxinfo/by-cuit/{cuit}")]
-        public async Task<TaxInfo> GetTaxInfoByCuit(string cuit)
+        public async Task<TaxInfo> GetTaxInfoByCuit([FromRoute] string cuit)
         {
             return await Task.FromResult(new TaxInfo()
             {
