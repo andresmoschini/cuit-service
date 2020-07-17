@@ -77,9 +77,36 @@ namespace CuitService.Test
         }
 
         [Theory]
+        [InlineData("%20%20")]
+        [InlineData("%20 %20%20")]
+        public async Task GET_taxinfo_by_cuit_with_spaces_should_return_400_BadRequest(string cuit)
+        {
+            // Arrange
+            var client = _factory.WithBypassAuthorization().CreateClient();
+
+            // Act
+            var response = await client.GetAsync($"https://custom.domain.com/taxinfo/by-cuit/{cuit}");
+
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+
+            // TODO: verify that the provider has not been called
+
+            var content = await response.Content.ReadAsStringAsync();
+            var problemDetail = JsonSerializer.Deserialize<JsonElement>(content);
+            Assert.Equal("One or more validation errors occurred.", problemDetail.GetProperty("title").GetString());
+            Assert.Collection(problemDetail.GetProperty("errors").EnumerateObject(),
+                item =>
+                {
+                    Assert.Equal("cuit", item.Name);
+                    Assert.Equal(1, item.Value.GetArrayLength());
+                    Assert.Equal("The cuit field is required.", item.Value.EnumerateArray().First().GetString());
+                });
+        }
+
+        [Theory]
         [InlineData("-")]
         [InlineData("-----")]
-        [InlineData("%20%20")]
         [InlineData("%20%20-")]
         [InlineData("-%20%20-")]
         public async Task GET_taxinfo_by_cuit_with_dashes_or_spaces_should_return_400_BadRequest(string cuit)

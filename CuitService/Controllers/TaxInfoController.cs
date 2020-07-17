@@ -16,15 +16,14 @@ namespace CuitService.Controllers
             _logger = logger;
         }
 
-        // TODO: rename cuitNumber parameter as cuit
         [HttpGet("/taxinfo/by-cuit/{cuit}")]
-        public async Task<TaxInfo> GetTaxInfoByCuit([FromRoute] CuitNumber cuitNumber)
+        public async Task<TaxInfo> GetTaxInfoByCuit([FromRoute] CuitNumber cuit)
         {
             return await Task.FromResult(new TaxInfo()
             {
                 ActividadPrincipal = "620100-SERVICIOS DE CONSULTORES EN INFORMÁTICA Y SUMINISTROS DE PROGRAMAS DE INFORMÁTICA",
                 Apellido = null,
-                CUIT = cuitNumber.cuit,
+                CUIT = cuit.OriginalValue, // TODO: return the formatted value
                 CatIVA = "RI",
                 CatImpGanancias = "RI",
                 DomicilioCodigoPostal = "7600",

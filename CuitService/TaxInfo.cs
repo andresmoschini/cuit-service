@@ -4,6 +4,7 @@ namespace CuitService
     {
         public string? ActividadPrincipal { get; set; }
         public string? Apellido { get; set; }
+        // TODO: consider using CuitNumber abstraction in place of string
         public string? CUIT { get; set; }
         public string? CatIVA { get; set; }
         public string? CatImpGanancias { get; set; }
