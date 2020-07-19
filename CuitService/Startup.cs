@@ -19,7 +19,10 @@ namespace CuitService
         {
             services.AddDopplerSecurity();
             services.AddTaxInfoProvider();
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.ModelBinderProviders.Insert(0, new CuitNumberModelBinderProvider());
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
