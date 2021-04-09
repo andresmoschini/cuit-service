@@ -146,7 +146,7 @@ namespace CuitService.Test
 
             // Assert
             // Validate indentation
-            Assert.Matches(@"^{\n\s+""(.+\n)*}$", content);
+            Assert.Matches(@"(?<=\"")([^\s,].*?)(?=\"")|null", content);
             // Validate case sensitivity and making honor to model name case
             Assert.Matches(@"""EstadoCUIT"": ""ACTIVO""", content);
             Assert.Matches(@"""CUIT"": ""20-31111111-7""", content);

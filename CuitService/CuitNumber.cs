@@ -25,7 +25,7 @@ namespace CuitService
 
             var validationResult = ValidateNumber(value);
 
-            if (validationResult != ValidationResult.Success)
+            if (validationResult != null && validationResult != ValidationResult.Success)
             {
                 throw new ArgumentException(validationResult.ErrorMessage, nameof(value));
             }
@@ -35,7 +35,7 @@ namespace CuitService
             FormattedValue = CuitRegex.Replace(SimplifiedValue, "$1-$2-$3");
         }
 
-        public static ValidationResult ValidateNumber(string? value)
+        public static ValidationResult? ValidateNumber(string? value)
         {
             if (value == null)
             {

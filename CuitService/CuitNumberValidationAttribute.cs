@@ -8,7 +8,7 @@ namespace CuitService
 {
     public class CuitNumberValidationAttribute : ValidationAttribute
     {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
             => CuitNumber.ValidateNumber(value as string);
     }
 }
