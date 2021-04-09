@@ -72,10 +72,10 @@ namespace CuitService.Test
             var cuitNumber = JsonSerializer.Deserialize<CuitNumber>(json);
 
             // Assert
-            Assert.Equal(originalValue, cuitNumber.OriginalValue);
-            Assert.Equal(simplifiedValue, cuitNumber.SimplifiedValue);
-            Assert.Equal(formattedValue, cuitNumber.FormattedValue);
-            Assert.Equal(formattedValue, cuitNumber.ToString());
+            Assert.Equal(originalValue, cuitNumber?.OriginalValue);
+            Assert.Equal(simplifiedValue, cuitNumber?.SimplifiedValue);
+            Assert.Equal(formattedValue, cuitNumber?.FormattedValue);
+            Assert.Equal(formattedValue, cuitNumber?.ToString());
         }
 
         [Theory]

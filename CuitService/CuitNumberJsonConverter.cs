@@ -7,7 +7,7 @@ namespace CuitService
     {
         public override CuitNumber Read(ref Utf8JsonReader reader, System.Type typeToConvert, JsonSerializerOptions options)
         {
-            return new CuitNumber(reader.GetString());
+            return new CuitNumber(reader.GetString() ?? string.Empty);
         }
 
         public override void Write(Utf8JsonWriter writer, CuitNumber value, JsonSerializerOptions options)

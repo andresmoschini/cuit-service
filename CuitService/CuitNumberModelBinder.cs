@@ -31,7 +31,7 @@ namespace CuitService
             {
                 bindingContext.ModelState.TryAddModelError(
                     modelName,
-                    errorMessage.ErrorMessage);
+                    errorMessage.ErrorMessage ?? string.Empty);
                 return Task.CompletedTask;
             }
 
